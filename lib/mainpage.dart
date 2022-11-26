@@ -1,6 +1,23 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
+var images = [
+  'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/assortment-of-colorful-ripe-tropical-fruits-top-royalty-free-image-995518546-1564092355.jpg',
+  'https://www.healthyeating.org/images/default-source/home-0.0/nutrition-topics-2.0/general-nutrition-wellness/2-2-2-2foodgroups_vegetables_detailfeature.jpg?sfvrsn=226f1bc7_6',
+  'https://5.imimg.com/data5/FT/AK/MY-2574561/exotic-vegetables-500x500.jpg',
+  'https://www.moceriproduce.com/wp-content/uploads/2016/04/Fresh-cut-1.jpg',
+  'https://www.eatright.org/-/media/eatrightimages/food/nutrition/vegetarianandspecialdiets/foodsourcesof5importantnutrientsforvegetarians.jpg',
+  'https://www.foodnavigator-usa.com/var/wrbm_gb_food_pharma/storage/images/publications/food-beverage-nutrition/foodnavigator-usa.com/news/markets/ethnic-flavors-and-other-trends-heat-up-in-food-and-beverage-launches-innova-says/8768622-1-eng-GB/Ethnic-flavors-and-other-trends-heat-up-in-food-and-beverage-launches-Innova-says.jpg'
+];
+var items = [
+  'fruits',
+  'vegetable',
+  'exotic',
+  'fresh cuts',
+  'nutrition',
+  'packed flavors'
+];
+
 class mainpage extends StatelessWidget {
   const mainpage({Key? key}) : super(key: key);
 
@@ -253,7 +270,52 @@ class mainpage extends StatelessWidget {
                   ),
                 ),
               ),
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Text(
+                'SHOPE BY CATEGORY',
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+            GridView.builder(
+                physics: ScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: images.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 1,
+                  mainAxisSpacing: 3,
+                ),
+                itemBuilder: (context, int index) {
+                  return Card(
+                    elevation: 20,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: NetworkImage(images[index]),
+                                    fit: BoxFit.fill),
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(10),
+                                    topLeft: Radius.circular(10))),
+                            height: 100,
+                            width: 120,
+                          ),
+                          SizedBox(
+                            height: 2,
+                          ),
+                          Text(items[index])
+                        ],
+                      ),
+                    ),
+                  );
+                })
           ])),
         ],
       ),
